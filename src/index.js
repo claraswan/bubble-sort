@@ -1,6 +1,7 @@
 "use strict"
 
 import './main.css';
+const Plotly = require('plotly.js-basic-dist');
 // import bblSort from './algo.js';
 
 const bblSort = (array) => {
@@ -21,10 +22,8 @@ const bblSort = (array) => {
     return array;
 }
 
-
 const ogArray = document.getElementById('og_array');
 const sortedArray = document.getElementById('sorted_array');
-
 
 let myArray = [5, 1, 4, 2, 7, -1, 40, 3, 3, 0, 50];
 
@@ -33,3 +32,12 @@ ogArray.innerText = 'Original array: ' + myArray;
 let newArray = bblSort(myArray);
 
 sortedArray.innerText = 'Sorted array: ' + newArray;
+
+const canvas = document.getElementById('canvas');
+Plotly.newPlot(canvas, [{
+
+	x: [1, 2, 3, 4, 5],
+
+	y: [1, 2, 4, 8, 16] }], {
+
+	margin: { t: 0 } } );
