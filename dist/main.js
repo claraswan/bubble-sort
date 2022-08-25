@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.getElementById("og_array"),t=document.getElementById("sorted_array");let r=[5,1,4,2,7,-1,40,3,3,0,50];e.innerText="Original array: "+r;let n=(e=>{for(let t=0;t<e.length;t++){let r=!0;for(let n=0;n<e.length-t;n++)if(e[n]>e[n+1]){let t=e[n];e[n]=e[n+1],e[n+1]=t,r=!1}if(r)break}return e})(r);t.innerText="Sorted array: "+n})();
