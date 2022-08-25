@@ -1,5 +1,6 @@
 "use strict"
 
+import './main.css';
 // import bblSort from './algo.js';
 
 const bblSort = (array) => {
