@@ -25,7 +25,7 @@ const bblSort = (array) => {
 const ogArray = document.getElementById('og_array');
 const sortedArray = document.getElementById('sorted_array');
 
-let myArray = [5, 1, 4, 2, 7, -1, 40, 3, 3, 0, 50];
+let myArray = [5, 1, 4, 2, 0];
 
 ogArray.innerText = 'Original array: ' + myArray;
 
@@ -33,11 +33,53 @@ let newArray = bblSort(myArray);
 
 sortedArray.innerText = 'Sorted array: ' + newArray;
 
+
+//// PLOTLY ////
+
 const canvas = document.getElementById('canvas');
-Plotly.newPlot(canvas, [{
 
-	x: [1, 2, 3, 4, 5],
+const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
 
-	y: [1, 2, 4, 8, 16] }], {
+const yValue = [5, 9, 1, 4, 7, 2, 0]; //this is the actual array
 
-	margin: { t: 0 } } );
+const trace1 = {
+    x: xValue,
+
+    y: yValue,
+
+    width: 0.8,
+  
+    type: 'bar',
+  
+    text: yValue.map(String),
+  
+    textposition: 'auto',
+}
+
+const data = [trace1];
+
+const layout = {
+
+    title: 'Bubble Sort Visualizer',
+
+    showlegend: false,
+
+    yaxis: {
+  
+      zeroline: false,
+      visible: false,
+      showticklabels: false,
+      gridwidth: 1
+  
+    },
+
+    xaxis: {
+        visible: false,
+        showticklabels: false
+    },
+              
+    bargap: 0.01
+  
+}
+
+Plotly.newPlot(canvas, data, layout);

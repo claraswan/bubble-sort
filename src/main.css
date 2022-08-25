@@ -3,3 +3,9 @@ body {
     font-family: monospace;
     color: black;
 }
+
+#canvas {
+    width: 80%;
+    height:300px;
+    margin: 28px;
+}
