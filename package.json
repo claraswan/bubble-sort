@@ -1,0 +1,22 @@
+{
+  "name": "bubble-sort",
+  "version": "1.0.0",
+  "description": "Bubble sorting visualization in JS",
+  "main": "algo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claraswan/bubble-sort.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claraswan/bubble-sort/issues"
+  },
+  "homepage": "https://github.com/claraswan/bubble-sort#readme",
+  "dependencies": {
+    "plotly.js-dist": "^2.14.0"
+  }
+}
