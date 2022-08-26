@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Bubble sorting visualization in JS",
   "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/claraswan/bubble-sort.git"
@@ -18,15 +14,8 @@
   },
   "homepage": "https://github.com/claraswan/bubble-sort#readme",
   "dependencies": {
-    "ify-loader": "^1.1.0",
     "plotly.js": "^2.14.0",
     "plotly.js-basic-dist": "^2.14.0",
     "plotly.js-dist": "^2.14.0"
-  },
-  "devDependencies": {
-    "css-loader": "^6.7.1",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
   }
 }

@@ -1,8 +1,6 @@
 "use strict"
 
-import './main.css';
-const Plotly = require('plotly.js-basic-dist');
-// import bblSort from './algo.js';
+// const Plotly = require('plotly.js-basic-dist');
 
 const bblSort = (array) => {
     for (let i=0; i<array.length; i++) {
