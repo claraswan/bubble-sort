@@ -3,7 +3,7 @@
 const canvas = document.getElementById('canvas');
 const start = document.getElementById('start-button');
 const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
-const yValue = [5, 9, 1, 4, 7, 2, 8]; //this is the actual array
+const yValue = [5, 9, 2, 4, 7, 2, 8]; //this is the actual array
 
 //// PLOTLY ////
 const trace1 = {
@@ -13,6 +13,7 @@ const trace1 = {
     type: 'bar',
     text: yValue.map(String),
     textposition: 'auto',
+    marker:{color: '#664080'}
 }
 
 const data1 = [trace1];
@@ -72,9 +73,7 @@ function randomize(array) {
 
 /// Sorting Algorithm ///
 async function bblSort(array) {
-
-    let num = 0;
-    // let iArray = [];
+    
     console.log('initial array: ' + array);
 
     for (let i=0; i<array.length; i++) {
@@ -88,12 +87,10 @@ async function bblSort(array) {
                 array[j] = array[j+1];
                 array[j+1] = temp;
                 isSorted = false; // if we end up swapping two items, then our previous assumption was wrong and we will make another pass of iterations       
-                // iArray.push(num);
+               
                 randomize(array);
 
-                const result = await wait2Seconds(array);
-                console.log('iteration round ' + num + ': ' + result);
-                num++;
+                await wait2Seconds(array);
             }
 
         }
@@ -103,8 +100,6 @@ async function bblSort(array) {
             break;
         }
     }
-    // return array;
-
 }
 /// End ///
 
