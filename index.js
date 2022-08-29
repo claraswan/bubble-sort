@@ -2,6 +2,8 @@
 
 const canvas = document.getElementById('canvas');
 const start = document.getElementById('start-button');
+const reset = document.getElementById('reset-button');
+reset.style.display = 'none';
 const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
 const yValue = [5, 9, 2, 4, 7, 2, 8]; //this is the actual array
 
@@ -104,5 +106,13 @@ async function bblSort(array) {
 /// End ///
 
 start.addEventListener('click', () => {
+    reset.style.display = '';
+    start.style.display = 'none';
     bblSort(yValue);
+})
+
+reset.addEventListener('click', () => {
+    reset.style.display = 'none';
+    start.style.display = '';
+    window.location.reload();
 })
