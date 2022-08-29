@@ -4,6 +4,16 @@ body {
     color: black;
 }
 
+#start-button {
+    width: 7rem;
+    height: 1.5rem;
+    cursor: pointer;
+    border: solid 1px black;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+}
+
 #canvas, #canvas2 {
     width: 80%;
     height:300px;

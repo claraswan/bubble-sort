@@ -1,9 +1,7 @@
 "use strict"
 
-const ogArray = document.getElementById('og_array');
-const sortedArray = document.getElementById('sorted_array');
 const canvas = document.getElementById('canvas');
-const otherCanvas = document.getElementById('canvas2');
+const start = document.getElementById('start-button');
 const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
 const yValue = [5, 9, 1, 4, 7, 2, 8]; //this is the actual array
 
@@ -110,4 +108,6 @@ async function bblSort(array) {
 }
 /// End ///
 
-bblSort(yValue);
+start.addEventListener('click', () => {
+    bblSort(yValue);
+})
