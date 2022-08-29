@@ -1,8 +1,7 @@
 "use strict"
 
-import './main.css';
-const Plotly = require('plotly.js-basic-dist');
-// import bblSort from './algo.js';
+const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
+const yValue = [5, 9, 1, 4, 7, 2, 0]; //this is the actual array
 
 const bblSort = (array) => {
     for (let i=0; i<array.length; i++) {
@@ -25,11 +24,11 @@ const bblSort = (array) => {
 const ogArray = document.getElementById('og_array');
 const sortedArray = document.getElementById('sorted_array');
 
-let myArray = [5, 1, 4, 2, 0];
+// let myArray = [5, 1, 4, 2, 0];
 
-ogArray.innerText = 'Original array: ' + myArray;
+ogArray.innerText = 'Original array: ' + yValue;
 
-let newArray = bblSort(myArray);
+let newArray = bblSort(yValue);
 
 sortedArray.innerText = 'Sorted array: ' + newArray;
 
@@ -37,10 +36,6 @@ sortedArray.innerText = 'Sorted array: ' + newArray;
 //// PLOTLY ////
 
 const canvas = document.getElementById('canvas');
-
-const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
-
-const yValue = [5, 9, 1, 4, 7, 2, 0]; //this is the actual array
 
 const trace1 = {
     x: xValue,
