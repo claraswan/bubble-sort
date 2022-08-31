@@ -38,7 +38,7 @@ arrayForm.addEventListener('submit', (event) => {
     if (userArray.value !== '') {
         arrayForm.style.display = 'none';
         start.style.display = '';
-        let userInput = userArray.value;
+        let userInput = userArray.value.trim();
         let userInputArray = userInput.split(' ');
         
         for (const number of userInputArray) {
