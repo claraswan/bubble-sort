@@ -3,22 +3,15 @@
 const canvas = document.getElementById('canvas');
 const start = document.getElementById('start-button');
 const reset = document.getElementById('reset-button');
+const arrayForm = document.getElementById('array-input');
+const userArray = document.getElementById('user-array');
+const yValue = [];
+const xValue = [];
+canvas.style.display = 'none';
 reset.style.display = 'none';
-const xValue = [0, 1, 2, 3, 4, 5, 6]; //these are the indices
-const yValue = [5, 9, 2, 4, 7, 2, 8]; //this is the actual array
+start.style.display = 'none';
 
 //// PLOTLY ////
-const trace1 = {
-    x: xValue,
-    y: yValue,
-    width: 0.8,
-    type: 'bar',
-    text: yValue.map(String),
-    textposition: 'auto',
-    marker:{color: '#664080'}
-}
-
-const data1 = [trace1];
 
 const layout = {
 
@@ -44,7 +37,44 @@ const layout = {
   
 }
 
-Plotly.newPlot(canvas, data1, layout);
+arrayForm.addEventListener('submit', (event) => {
+    
+    event.preventDefault();
+
+    if (userArray.value !== '') {
+        arrayForm.style.display = 'none';
+        start.style.display = '';
+        let userInput = userArray.value;
+        let userInputArray = userInput.split(' ')
+        
+        for (const number of userInputArray) {
+            yValue.push(parseInt(number));
+        }
+
+        for (let i=0; i<yValue.length; i++) {
+            xValue.push(i);
+        }
+
+        const trace1 = {
+            x: xValue,
+            y: yValue,
+            width: 0.9,
+            type: 'bar',
+            text: yValue.map(String),
+            textposition: 'auto',
+            marker:{color: '#664080'}
+        }
+
+        const data1 = [trace1];
+        canvas.style.display = '';
+        Plotly.newPlot(canvas, data1, layout);
+        
+    } else {
+        alert('Please enter an array of integers');
+    }
+
+});
+
 /// END ///
 
 /// Functions ///
@@ -52,7 +82,7 @@ function wait2Seconds(array) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(array)
-        }, 2000)
+        }, 1000)
     })
 }
 
