@@ -16,25 +16,19 @@ start.style.display = 'none';
 const layout = {
 
     title: 'Bubble Sort Visualizer',
-
     showlegend: false,
-
     yaxis: {
-  
       zeroline: false,
       visible: false,
       showticklabels: false,
       gridwidth: 1
-  
     },
-
     xaxis: {
         visible: false,
         showticklabels: false
-    },
-              
+    },    
     bargap: 0.01
-  
+
 }
 
 arrayForm.addEventListener('submit', (event) => {
@@ -45,7 +39,7 @@ arrayForm.addEventListener('submit', (event) => {
         arrayForm.style.display = 'none';
         start.style.display = '';
         let userInput = userArray.value;
-        let userInputArray = userInput.split(' ')
+        let userInputArray = userInput.split(' ');
         
         for (const number of userInputArray) {
             yValue.push(parseInt(number));
