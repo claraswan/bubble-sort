@@ -12,15 +12,20 @@
 
     <div id="canvas"></div>
 
-    <form method="post" id="array-input">
+    <div class="input">
+        <form method="post" id="array-input">
 
-        <p>Enter any amount of integers separated by spaces: <input type="text" name="user-array" id="user-array" pattern="[0-9 ]+"></p>
-        <input type="submit" value="submit">
+            <p class="prompt">Enter any amount of integers separated by spaces: 
+                <input type="text" name="user-array" id="user-array" pattern="[0-9 ]+">
+            </p>
+            <input type="submit" value="submit" class="btn btn-submit">
+    
+        </form>
+    </div>
+    
 
-    </form>
-
-    <div class="button" id="start-button">Click to start</div>
-    <div class="button" id="reset-button">Click to start over</div>
+    <div class="btn" id="start-button">Click to start</div>
+    <div class="btn" id="reset-button">Click to start over</div>
 
     <script src="./index.js"></script>
 </body>
