@@ -10,23 +10,23 @@
 </head>
 <body>
 
-    <div id="canvas"></div>
+    
 
     <div class="input">
         <form method="post" id="array-input">
-
             <p class="prompt">Enter any amount of integers separated by spaces: 
                 <input type="text" name="user-array" id="user-array" pattern="[0-9 ]+">
             </p>
             <input type="submit" value="submit" class="btn btn-submit">
-    
         </form>
     </div>
+        
+    <div class="container">
+        <div id="canvas"></div>
+        <div class="btn" id="start-button">Click to start</div>
+        <div class="btn" id="reset-button">Click to start over</div>
+    </div>
     
-
-    <div class="btn" id="start-button">Click to start</div>
-    <div class="btn" id="reset-button">Click to start over</div>
-
     <script src="./index.js"></script>
 </body>
 </html>

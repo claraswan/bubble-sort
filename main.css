@@ -40,30 +40,42 @@ body {
 }
 
 .btn {
-    width: 7rem;
-    height: 1.6rem;
-    padding: .4rem;
+    font-size: 1.4rem;
+    width: 10rem;
+    height: 2rem;
+    padding: .8rem;
+    margin-top: 2rem;
     cursor: pointer;
-    border: solid 1px black;
-    background: white;
+    color: white;
+    background: #664080;
     border-radius: 1.2rem;
     text-align: center;
+    box-shadow: 1 2rem 4rem rgba(0, 0, 0, 0.2);
+    transition: all .2s;
 }
 
 .btn:hover {
-    color: white;
-    background: #664080;
-    border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #canvas {
-    width: 80%;
+    width: 80vw;
     height: 50vh;
-    margin: 2.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #reset-button {
-    width: 9rem;
+    width: 14rem;
 }

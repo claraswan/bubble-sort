@@ -5,6 +5,7 @@ const start = document.getElementById('start-button');
 const reset = document.getElementById('reset-button');
 const arrayForm = document.getElementById('array-input');
 const userArray = document.getElementById('user-array');
+const inputBox = document.querySelector('.input');
 const yValue = [];
 const xValue = [];
 canvas.style.display = 'none';
@@ -36,7 +37,7 @@ arrayForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     if (userArray.value !== '') {
-        arrayForm.style.display = 'none';
+        inputBox.style.display = 'none';
         start.style.display = '';
         let userInput = userArray.value.trim();
         let userInputArray = userInput.split(' ');
@@ -52,7 +53,7 @@ arrayForm.addEventListener('submit', (event) => {
         const trace1 = {
             x: xValue,
             y: yValue,
-            width: 0.9,
+            width: 0.7,
             type: 'bar',
             text: yValue.map(String),
             textposition: 'auto',
