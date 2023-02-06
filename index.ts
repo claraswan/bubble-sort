@@ -1,53 +1,49 @@
-import bubbleSort from './bubbleSort';
-import Plotly from 'plotly.js';
+import bubbleSort from './bubbleSort.js';
+import * as d3 from 'd3';
 
-const ogArray = <HTMLDivElement>document.getElementById('og_array');
-const sortedArray = <HTMLDivElement>document.getElementById('sorted_array');
-const canvas = <HTMLDivElement>document.getElementById('canvas');
-const yValues = [9, 5, 1, 4, 7, 2, 0]; 
-const myArray = [5, 1, 4, 2, 0];
-const newArray = bubbleSort(myArray, yValues);
-
-ogArray.innerText = 'Original array: ' + yValues;
-sortedArray.innerText = 'Sorted array: ' + newArray;
-
-const xValue = [0, 1, 2, 3, 4, 5, 6]; // these are the indices
-
-//this is the actual array (unsorted)
-
-const trace1 = {
-    x: xValue,
-    y: yValues,
-    width: 0.8,
-    type: 'bar',
-    text: yValues.map(String),
-    textposition: 'auto',
-}
-
-const data = [trace1];
-
-const layout = {
-
-    title: 'Bubble Sort Visualizer',
-
-    showlegend: false,
-
-    yaxis: {
-  
-      zeroline: false,
-      visible: false,
-      showticklabels: false,
-      gridwidth: 1
-  
-    },
-
-    xaxis: {
-        visible: false,
-        showticklabels: false
-    },
-              
-    bargap: 0.01
-  
-}
-
-Plotly.newPlot(canvas, data, layout);
+window.addEventListener('load', () => {
+    const canvas = <HTMLDivElement>document.getElementById('canvas');
+    const start = <HTMLButtonElement>document.getElementById('start-button');
+    const reset = <HTMLButtonElement>document.getElementById('reset-button');
+    const form = <HTMLFormElement>document.querySelector('.input__form');
+    const submit = <HTMLButtonElement>document.querySelector('.btn-submit');
+    const userInput = <HTMLInputElement>document.getElementById('user-input');
+    const inputBox = <HTMLDivElement>document.querySelector('.input');
+    let data: {index: number, num: number}; // index: the indices of each number (x values), num: the actual numbers to be sorted (y values)
+    reset.style.display = 'none';
+    start.style.display = 'none';
+    
+    const element = d3.selectAll('div');
+    
+    submit.addEventListener('click', (e: MouseEvent) => {
+        e.preventDefault();
+        console.log('something');
+        if (userInput !== null && userInput.value !== '') {
+            inputBox.style.display = 'none';
+            start.style.display = '';
+            canvas.style.display = '';
+            const formData = new FormData(form);
+            const userValues = formData.get('user-array') as string;
+            const userValuesArray = userValues.split(' ');
+            userValuesArray.forEach((num: string, index: number) => {
+                data.index = parseInt(num);
+            });
+            console.log(userValuesArray);
+        } else {
+            alert('Please enter an array of integers');
+        }
+        form.reset();
+    });
+    
+    start.addEventListener('click', () => {
+        reset.style.display = '';
+        start.style.display = 'none';
+        bubbleSort(Object.values(data));
+    })
+    
+    reset.addEventListener('click', () => {
+        reset.style.display = 'none';
+        start.style.display = '';
+        window.location.reload();
+    })
+})

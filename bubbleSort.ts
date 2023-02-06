@@ -1,20 +1,30 @@
-export default function bblSort(numbers: Array<number>, yValues: Array<number>): Array<number> {
-    for (let i=0; i<numbers.length; i++) {
-        let isSorted = true; // assumption that numbers is already sorted at the start of pass #i
+const canvas = <HTMLDivElement>document.getElementById('canvas');
 
-        for (let j=0; j<(numbers.length-i); j++) {
+export default async function bblSort(numbers: Array<number>) {
+    for (let i=0; i<numbers.length; i++) {
+        let isSorted = true; // assumption that array is already sorted at the start of pass #i
+        for (let j=0; j<(numbers.length); j++) {
             if (numbers[j] > numbers[j+1]) {
                 let temp = numbers[j];
                 numbers[j] = numbers[j+1];
                 numbers[j+1] = temp;
-                yValues = numbers;
-                isSorted = false; // if we end up swapping two items, then our previous assumption was wrong and we will make another pass of iterations
+                isSorted = false; // if we end up swapping two items, then our previous assumption was wrong and we will make another pass of iterations       
+               
+                animateChart(numbers);
+                setTimeout(() => {
+                    return numbers;
+                }, 1000);
             }
+
         }
+
         if (isSorted) { // even after iterations, our assumption was correct so we can end the outer loop here
+            console.log('array sorted!');
             break;
         }
-        
     }
-    return numbers;
+}
+
+function animateChart(numbers: Array<number>) {
+   console.log('animate');
 }
