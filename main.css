@@ -9,3 +9,8 @@ body {
     height:300px;
     margin: 28px;
 }
+
+#next-button {
+    background: none;
+    cursor: pointer;
+}
