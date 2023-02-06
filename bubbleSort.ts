@@ -9,8 +9,6 @@ export default async function bblSort(numbers: Array<number>) {
                 numbers[j] = numbers[j+1];
                 numbers[j+1] = temp;
                 isSorted = false; // if we end up swapping two items, then our previous assumption was wrong and we will make another pass of iterations       
-               
-                animateChart(numbers);
                 setTimeout(() => {
                     return numbers;
                 }, 1000);
@@ -23,8 +21,4 @@ export default async function bblSort(numbers: Array<number>) {
             break;
         }
     }
-}
-
-function animateChart(numbers: Array<number>) {
-   console.log('animate');
 }
