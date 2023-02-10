@@ -8,9 +8,7 @@ export default function bblSort(numbers: Array<number>): Array<number> {
                 numbers[j+1] = temp;
                 isSorted = false; // if we end up swapping two items, then our previous assumption was wrong and we will make another pass of iterations       
             }
-
         }
-
         if (isSorted) { // end the outer loop here
             break;
         }
