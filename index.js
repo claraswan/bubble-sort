@@ -1,61 +1,68 @@
 import bubbleSort from './bubbleSort.js';
-var canvas = document.getElementById('canvas');
-var start = document.getElementById('start-button');
-var reset = document.getElementById('reset-button');
-var form = document.querySelector('.input__form');
-var submit = document.querySelector('.btn-submit');
-var userInput = document.getElementById('user-input');
-var yValues = [];
-var xValues = [];
+const canvas = document.getElementById('canvas');
+const start = document.getElementById('start-button');
+const reset = document.getElementById('reset-button');
+const form = document.querySelector('.input__form');
+const submit = document.querySelector('.btn-submit');
+const userInput = document.getElementById('user-input');
+let yValues = [];
 reset.style.display = 'none';
 start.style.display = 'none';
-function makeInitialChart(yValues, xValues) {
-    console.log(yValues);
-    var svg = d3.selectAll('canvas')
+function makeInitialChart(yValues) {
+    const upperBoundY = Math.max.apply(0, yValues) + 10;
+    const availableWidth = parseInt((getComputedStyle(canvas).width).split('.')[0]);
+    const availableHeight = parseInt((getComputedStyle(canvas).height).split('.')[0]);
+    const scaleX = d3.scaleBand()
+        .domain(yValues.map(value => String(value)))
+        .rangeRound([0, availableWidth])
+        .padding(.1);
+    const scaleY = d3.scaleLinear()
+        .domain([0, upperBoundY])
+        .range([availableHeight, 0]);
+    const chart = d3.select(canvas)
         .append('svg')
-        .attr('width', 500)
-        .attr('height', 500);
-    svg.selectAll('rect')
+        .attr('width', '100%')
+        .attr('height', '100%');
+    chart.selectAll('rect')
         .data(yValues)
         .enter()
         .append('rect')
-        .attr('x', function (d, i) { return i * 70; })
-        .attr('y', function (d, i) { return 300 - 10 * d; })
-        .attr('width', 65)
-        .attr('height', function (d, i) { return d * 10; })
-        .attr('fill', 'blue');
-    svg.append('text')
+        .classed('bar', true)
+        .attr('width', scaleX.bandwidth())
+        .attr('height', data => availableHeight - scaleY(data))
+        .attr('x', data => scaleX(String(data)))
+        .attr('y', data => scaleY(data))
+        .text(data => data);
+    chart.append('text')
         .attr('x', 100)
         .attr('y', 100)
         .text('chart');
-    console.log('here they are', yValues, xValues);
 }
-submit.addEventListener('click', function (e) {
+submit.addEventListener('click', (e) => {
     e.preventDefault();
     if (userInput !== null && userInput.value !== '') {
-        canvas.style.display = 'flex';
+        canvas.classList.add('active');
         start.style.display = 'flex';
         form.style.display = 'none';
-        var formData = new FormData(form);
-        var userValues = formData.get('user-array');
-        var userValuesArray = userValues.split(' ');
-        userValuesArray.forEach(function (num, i) {
+        const formData = new FormData(form);
+        const userValues = formData.get('user-array');
+        const userValuesArray = userValues.split(' ');
+        userValuesArray.forEach((num) => {
             yValues.push(parseInt(num));
-            xValues.push(i);
         });
-        makeInitialChart(yValues, xValues);
+        makeInitialChart(yValues);
     }
     else {
         alert('Please enter an array of integers');
     }
     form.reset();
 });
-start.addEventListener('click', function () {
+start.addEventListener('click', () => {
     reset.style.display = '';
     start.style.display = 'none';
     bubbleSort(yValues);
 });
-reset.addEventListener('click', function () {
+reset.addEventListener('click', () => {
     reset.style.display = 'none';
     start.style.display = '';
     window.location.reload();
