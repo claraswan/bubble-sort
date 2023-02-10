@@ -41,10 +41,15 @@ function makeInitialChart(yValues: Array<number>) {
         .attr('y', data => scaleY(data))
         .text(data => data);
 
-    chart.append('text')
-        .attr('x', 100)
-        .attr('y', 100)
-        .text('chart');
+    chart
+        .selectAll('text')  
+        .data(yValues)
+        .enter()  
+        .append('text')
+        .attr('x', data => scaleX(String(data)))
+        .attr('y', data => scaleY(data))
+        .classed('text', true)
+        .text(data => data);
 }
 
 submit.addEventListener('click', (e: MouseEvent) => {
@@ -67,9 +72,11 @@ submit.addEventListener('click', (e: MouseEvent) => {
 });
 
 start.addEventListener('click', () => {
+    canvas.innerHTML = '';
     reset.style.display = '';
     start.style.display = 'none';
-    bubbleSort(yValues);
+    const newValues = bubbleSort(yValues);
+    makeInitialChart(newValues);
 })
 
 reset.addEventListener('click', () => {

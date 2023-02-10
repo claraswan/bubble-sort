@@ -74,6 +74,11 @@ button {
     fill: rgb(63, 0, 63);
 }
 
+.text {
+    fill: rgb(63, 0, 63);
+    text-anchor: center;
+}
+
 #canvas {
     background-color: white;
     padding: 1rem;
