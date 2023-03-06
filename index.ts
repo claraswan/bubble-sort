@@ -13,15 +13,15 @@ start.style.display = 'none';
 function makeInitialChart(yValues: Array<number>) {
 
     const upperBoundY = Math.max.apply(0, yValues) + 10;
-    const availableWidth: number= parseInt((getComputedStyle(canvas).width).split('.')[0]);
-    const availableHeight: number= parseInt((getComputedStyle(canvas).height).split('.')[0]);
+    const availableWidth: number = parseInt((getComputedStyle(canvas).width).split('.')[0]);
+    const availableHeight: number = parseInt((getComputedStyle(canvas).height).split('.')[0]);
 
-    const scaleX = d3.scaleBand()
+    const x = d3.scaleBand()
         .domain(yValues.map(value => String(value)))
         .rangeRound([0, availableWidth])
         .padding(.1);
 
-    const scaleY = d3.scaleLinear()
+    const y = d3.scaleLinear()
         .domain([0, upperBoundY])
         .range([availableHeight, 0]);
 
@@ -35,21 +35,22 @@ function makeInitialChart(yValues: Array<number>) {
         .enter()
         .append('rect')
         .classed('bar', true)
-        .attr('width', scaleX.bandwidth())
-        .attr('height', data => availableHeight - scaleY(data))
-        .attr('x', data => scaleX(String(data)))
-        .attr('y', data => scaleY(data))
+        .attr('width', x.bandwidth())
+        .attr('height', data => availableHeight - y(data))
+        .attr('x', data => x(String(data)))
+        .attr('y', data => y(data))
         .text(data => data);
 
     chart
-        .selectAll('text')  
+        .selectAll('.label')  
         .data(yValues)
         .enter()  
         .append('text')
-        .attr('x', data => scaleX(String(data)))
-        .attr('y', data => scaleY(data))
-        .classed('text', true)
-        .text(data => data);
+        .text(data => data)
+        .attr('x', data => x(String(data)) + x.bandwidth() / 2)
+        .attr('y', data => y(data) - 10)
+        .attr('text-anchor', 'middle')
+        .classed('label', true);
 }
 
 submit.addEventListener('click', (e: MouseEvent) => {
