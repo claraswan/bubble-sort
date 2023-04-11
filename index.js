@@ -1,4 +1,5 @@
 import bubbleSort from './bubbleSort.js';
+import Plotly from 'plotly.js';
 const canvas = document.getElementById('canvas');
 const start = document.getElementById('start-button');
 const reset = document.getElementById('reset-button');
@@ -8,44 +9,36 @@ const userInput = document.getElementById('user-input');
 let yValues = [];
 reset.style.display = 'none';
 start.style.display = 'none';
-function makeInitialChart(yValues) {
-    const upperBoundY = Math.max.apply(0, yValues) + 10;
-    const availableWidth = parseInt((getComputedStyle(canvas).width).split('.')[0]);
-    const availableHeight = parseInt((getComputedStyle(canvas).height).split('.')[0]);
-    const x = d3.scaleBand()
-        .domain(yValues.map(value => String(value)))
-        .rangeRound([0, availableWidth])
-        .padding(.1);
-    const y = d3.scaleLinear()
-        .domain([0, upperBoundY])
-        .range([availableHeight, 0]);
-    const chart = d3.select(canvas)
-        .append('svg')
-        .attr('width', '100%')
-        .attr('height', '100%');
-    chart.selectAll('rect')
-        .data(yValues)
-        .enter()
-        .append('rect')
-        .classed('bar', true)
-        .attr('width', x.bandwidth())
-        .attr('height', data => availableHeight - y(data))
-        .attr('x', data => x(String(data)))
-        .attr('y', data => y(data))
-        .text(data => data);
-    chart
-        .selectAll('.label')
-        .data(yValues)
-        .enter()
-        .append('text')
-        .text(data => data)
-        .attr('x', data => x(String(data)) + x.bandwidth() / 2)
-        .attr('y', data => y(data) - 10)
-        .attr('text-anchor', 'middle')
-        .classed('label', true);
+const layout = {
+    title: 'Bubble Sort Visualizer',
+    showlegend: false,
+    yaxis: {
+        zeroline: false,
+        visible: false,
+        showticklabels: false,
+        gridwidth: 1
+    },
+    xaxis: {
+        visible: false,
+        showticklabels: false
+    },
+    bargap: 0.01
+};
+function makeInitialChart(canvas, yValues, xValues, layout) {
+    const trace = {
+        x: xValues,
+        y: yValues,
+        width: 0.8,
+        type: 'bar',
+        text: yValues.map(String),
+        textposition: 'auto',
+    };
+    const data = [trace];
+    Plotly.newPlot(canvas, data, layout);
 }
 submit.addEventListener('click', (e) => {
     e.preventDefault();
+    const xValues = [0, 1, 2, 3, 4, 5, 6]; // these are the indices
     if (userInput !== null && userInput.value !== '') {
         canvas.classList.add('active');
         start.style.display = 'flex';
@@ -56,7 +49,7 @@ submit.addEventListener('click', (e) => {
         userValuesArray.forEach((num) => {
             yValues.push(parseInt(num));
         });
-        makeInitialChart(yValues);
+        makeInitialChart(canvas, yValues, xValues, layout);
     }
     else {
         alert('Please enter an array of integers');
@@ -67,8 +60,7 @@ start.addEventListener('click', () => {
     canvas.innerHTML = '';
     reset.style.display = '';
     start.style.display = 'none';
-    const newValues = bubbleSort(yValues);
-    makeInitialChart(newValues);
+    bubbleSort(yValues);
 });
 reset.addEventListener('click', () => {
     reset.style.display = 'none';
