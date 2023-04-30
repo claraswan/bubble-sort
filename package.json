@@ -1,27 +1,24 @@
 {
-  "name": "bubble-sort",
+  "name": "bubble-sort-visualizer",
   "version": "1.0.0",
-  "description": "Bubble sorting visualization in JS",
-  "private": true,
+  "description": "To improve my understanding of basic CS algorithms, I decided to create this JS project to visualize a common sorting algorithm: bubble sort.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/claraswan/bubble-sort.git"
+    "url": "git+https://github.com/claraswan/bubble-sort-visualizer.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/claraswan/bubble-sort/issues"
+    "url": "https://github.com/claraswan/bubble-sort-visualizer/issues"
   },
-  "homepage": "https://github.com/claraswan/bubble-sort#readme",
+  "homepage": "https://github.com/claraswan/bubble-sort-visualizer#readme",
   "devDependencies": {
-    "css-loader": "^6.7.1",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
-  },
-  "dependencies": {
-    "@types/plotly.js": "^2.12.13",
-    "plotly.js": "^2.18.1",
-    "plotly.js-dist": "^2.20.0"
+    "@types/plotly.js": "^2.12.18",
+    "plotly.js": "^2.22.0",
+    "plotly.js-dist": "^2.22.0"
   }
 }

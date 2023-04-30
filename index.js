@@ -3,28 +3,13 @@ import Plotly from 'plotly.js';
 const canvas = document.getElementById('canvas');
 const start = document.getElementById('start-button');
 const reset = document.getElementById('reset-button');
-const form = document.querySelector('.input__form');
-const submit = document.querySelector('.btn-submit');
+const submit = document.getElementById('submit-array');
 const userInput = document.getElementById('user-input');
 let yValues = [];
 reset.style.display = 'none';
 start.style.display = 'none';
-const layout = {
-    title: 'Bubble Sort Visualizer',
-    showlegend: false,
-    yaxis: {
-        zeroline: false,
-        visible: false,
-        showticklabels: false,
-        gridwidth: 1
-    },
-    xaxis: {
-        visible: false,
-        showticklabels: false
-    },
-    bargap: 0.01
-};
 function makeInitialChart(canvas, yValues, xValues, layout) {
+    console.log('passed yValues:', yValues);
     const trace = {
         x: xValues,
         y: yValues,
@@ -39,13 +24,12 @@ function makeInitialChart(canvas, yValues, xValues, layout) {
 submit.addEventListener('click', (e) => {
     e.preventDefault();
     const xValues = [0, 1, 2, 3, 4, 5, 6]; // these are the indices
+    console.log(userInput.value);
     if (userInput !== null && userInput.value !== '') {
         canvas.classList.add('active');
         start.style.display = 'flex';
-        form.style.display = 'none';
-        const formData = new FormData(form);
-        const userValues = formData.get('user-array');
-        const userValuesArray = userValues.split(' ');
+        const userValues = userInput.value;
+        const userValuesArray = userValues.split('');
         userValuesArray.forEach((num) => {
             yValues.push(parseInt(num));
         });
@@ -54,13 +38,14 @@ submit.addEventListener('click', (e) => {
     else {
         alert('Please enter an array of integers');
     }
-    form.reset();
 });
 start.addEventListener('click', () => {
+    console.log('yValues', yValues);
     canvas.innerHTML = '';
     reset.style.display = '';
     start.style.display = 'none';
-    bubbleSort(yValues);
+    const newValues = bubbleSort(yValues);
+    console.log('newValues', newValues);
 });
 reset.addEventListener('click', () => {
     reset.style.display = 'none';

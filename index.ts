@@ -4,31 +4,14 @@ import Plotly from 'plotly.js';
 const canvas = <HTMLDivElement>document.getElementById('canvas');
 const start = <HTMLButtonElement>document.getElementById('start-button');
 const reset = <HTMLButtonElement>document.getElementById('reset-button');
-const form = <HTMLFormElement>document.querySelector('.input__form');
-const submit = <HTMLButtonElement>document.querySelector('.btn-submit');
+const submit = <HTMLButtonElement>document.getElementById('submit-array');
 const userInput = <HTMLInputElement>document.getElementById('user-input');
 let yValues: Array<number> = [];
 reset.style.display = 'none';
 start.style.display = 'none';
 
-const layout = {
-    title: 'Bubble Sort Visualizer',
-    showlegend: false,
-    yaxis: {
-      zeroline: false,
-      visible: false,
-      showticklabels: false,
-      gridwidth: 1
-    },
-    xaxis: {
-        visible: false,
-        showticklabels: false
-    },
-    bargap: 0.01
-}
-
 function makeInitialChart(canvas: HTMLDivElement, yValues: Array<number>, xValues: Array<number>, layout: { [index:string]:boolean|string|{} }) {
-    
+    console.log('passed yValues:', yValues);
     const trace = {
         x: xValues,
         y: yValues,
@@ -38,7 +21,7 @@ function makeInitialChart(canvas: HTMLDivElement, yValues: Array<number>, xValue
         textposition: 'auto',
     }
 
-    const data = [trace];
+    const data = [trace] as Plotly.Data[];
 
     Plotly.newPlot(canvas, data, layout);
 }
@@ -46,14 +29,12 @@ function makeInitialChart(canvas: HTMLDivElement, yValues: Array<number>, xValue
 submit.addEventListener('click', (e: MouseEvent) => {
     e.preventDefault();
     const xValues = [0, 1, 2, 3, 4, 5, 6]; // these are the indices
-
+    console.log(userInput.value);
     if (userInput !== null && userInput.value !== '') {
         canvas.classList.add('active');
         start.style.display = 'flex';
-        form.style.display = 'none';
-        const formData = new FormData(form);
-        const userValues = formData.get('user-array') as string;
-        const userValuesArray = userValues.split(' ');
+        const userValues = userInput.value;
+        const userValuesArray = userValues.split('');
         userValuesArray.forEach((num: string) => {
             yValues.push(parseInt(num));
         });
@@ -61,14 +42,15 @@ submit.addEventListener('click', (e: MouseEvent) => {
     } else {
         alert('Please enter an array of integers');
     }
-    form.reset();
 });
 
 start.addEventListener('click', () => {
+    console.log('yValues', yValues);
     canvas.innerHTML = '';
     reset.style.display = '';
     start.style.display = 'none';
-    bubbleSort(yValues);
+    const newValues = bubbleSort(yValues);
+    console.log('newValues', newValues);
 })
 
 reset.addEventListener('click', () => {

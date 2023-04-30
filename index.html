@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./main.css">
-    <script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
     <script src="./index.js" type="module" defer></script>
 </head>
 <body>
-    <form class="input__form" action="#" method="post">
-        <p class="input__prompt">Enter any amount of integers separated by spaces: 
-            <input type="text" name="user-array" id="user-input" pattern="[0-9 ]+">
-        </p>
-        <button type="submit" class="btn btn-submit">Submit</button>
-    </form>
+    <p class="input__prompt">Enter any amount of integers separated by spaces: 
+        <input type="text" id="user-input" pattern="[0-9 ]+">
+    </p>
+    <button id="submit-array" class="btn btn-submit">Submit</button>
         
     <div class="chart__container">
         <div id="canvas"></div>
